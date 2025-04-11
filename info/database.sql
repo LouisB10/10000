@@ -1,0 +1,73 @@
+-- Extension pour les UUID
+CREATE EXTENSION IF NOT EXISTS "uuid-ossp";
+
+-- Table des joueurs
+CREATE TABLE players (
+    id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
+    username VARCHAR(50) UNIQUE NOT NULL,
+    email VARCHAR(255) UNIQUE NOT NULL,
+    password_hash VARCHAR(255) NOT NULL,
+    created_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP,
+    last_login TIMESTAMP WITH TIME ZONE,
+    total_games_played INTEGER DEFAULT 0,
+    total_games_won INTEGER DEFAULT 0,
+    highest_score INTEGER DEFAULT 0
+);
+
+-- Table des parties
+CREATE TABLE games (
+    id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
+    created_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP,
+    finished_at TIMESTAMP WITH TIME ZONE,
+    status VARCHAR(20) NOT NULL CHECK (status IN ('waiting', 'in_progress', 'finished')),
+    winner_id UUID REFERENCES players(id),
+    max_players INTEGER NOT NULL,
+    current_round INTEGER DEFAULT 1,
+    target_score INTEGER DEFAULT 10000
+);
+
+-- Table des joueurs dans une partie
+CREATE TABLE game_players (
+    game_id UUID REFERENCES games(id),
+    player_id UUID REFERENCES players(id),
+    score INTEGER DEFAULT 0,
+    is_active BOOLEAN DEFAULT true,
+    position INTEGER,
+    joined_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP,
+    PRIMARY KEY (game_id, player_id)
+);
+
+-- Table des lancers de dés
+CREATE TABLE dice_rolls (
+    id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
+    game_id UUID REFERENCES games(id),
+    player_id UUID REFERENCES players(id),
+    round_number INTEGER NOT NULL,
+    roll_number INTEGER NOT NULL,
+    dice_values JSONB NOT NULL,
+    selected_dice JSONB,
+    score INTEGER,
+    created_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP
+);
+
+-- Table de l'historique des parties
+CREATE TABLE game_history (
+    id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
+    game_id UUID REFERENCES games(id),
+    player_id UUID REFERENCES players(id),
+    action_type VARCHAR(20) NOT NULL CHECK (action_type IN ('roll', 'select', 'pass', 'win')),
+    details JSONB,
+    created_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP
+);
+
+-- Index pour optimiser les performances
+CREATE INDEX idx_games_status ON games(status);
+CREATE INDEX idx_game_players_game ON game_players(game_id);
+CREATE INDEX idx_game_players_player ON game_players(player_id);
+CREATE INDEX idx_dice_rolls_game ON dice_rolls(game_id);
+CREATE INDEX idx_dice_rolls_player ON dice_rolls(player_id);
+CREATE INDEX idx_game_history_game ON game_history(game_id);
+
+-- Insertion d'un joueur test
+INSERT INTO players (username, email, password_hash) 
+VALUES ('test_player', 'test@example.com', 'hashed_password_here'); 

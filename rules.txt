@@ -1,0 +1,75 @@
+Objectif du jeu
+Être le premier joueur à atteindre 10 000 points ou avoir le score le plus élevé après le dernier tour.
+
+Matériel requis
+6 dés standard
+
+Feuille de score + stylo
+
+Plateau de lancer (optionnel)
+
+Déroulement d'une partie
+Déterminer l'ordre : Chaque joueur lance 1 dé, le plus haut score commence
+
+Structure d'un tour :
+
+Lancer tous les 6 dés initialement
+
+Conserver au moins 1 dé marqueur à chaque lancer
+
+Possibilité de relancer les dés non marqués ou de s'arrêter
+
+Si aucun dé ne marque : perte des points du tour ("Farkle")
+
+Système de scoring
+Combinaison	Points	Notes
+1	100	
+5	50	
+3x1	1000	
+3x[2-6]	100×valeur	3x4 = 400
+Suite complète (1-6)	1500	
+4+ dés identiques	Double par dé supplémentaire	Ex: 4x3 = 600, 5x3 = 1200
+Seuils importants :
+
+Entrée en jeu : 500/800 points minimum au premier tour (variantes)
+
+Dés brûlants : Relancer 6 dés si tous marquent
+
+Conditions de victoire
+Un joueur dépasse 10 000 points
+
+Dernier tour pour tous les autres joueurs
+
+Le plus haut score final l'emporte
+
+Variantes courantes
+Seuil d'entrée : 500 vs 800 points
+
+Combinaisons spéciales :
+
+3 paires = 750 points
+
+2 triplets = 2500 points
+
+Nombre de dés : 5 ou 6 selon les versions
+
+Considérations techniques
+Pour votre stack Astro/Three.js :
+
+Gestion des états : Suivi des dés actifs/marqués
+
+Calcul dynamique : Mise à jour des combinaisons en temps réel
+
+Multijoueur : Synchronisation des tours via WebSockets
+
+Animation 3D : Physique des dés avec Three.js (moteur Cannon.js)
+
+Backend suggéré :
+
+Node.js (Express/Socket.io) pour le temps réel
+
+Firebase pour une solution serverless
+
+PostgreSQL pour la persistance des parties
+
+SIte de jeu du 10000 en ligne, niveau de compte, xp, titre progressif, aspirant, débutant, .... maitre des dés.

@@ -1,0 +1,43 @@
+Joueurs (Players)
+id (PK)
+username
+email
+password_hash
+created_at
+last_login
+total_games_played
+total_games_won
+highest_score
+Parties (Games)
+id (PK)
+created_at
+finished_at
+status (waiting, in_progress, finished)
+winner_id (FK -> Players)
+max_players
+current_round
+target_score
+Joueurs dans une partie (GamePlayers)
+game_id (FK -> Games)
+player_id (FK -> Players)
+score
+is_active
+position
+joined_at
+Lancers de dés (DiceRolls)
+id (PK)
+game_id (FK -> Games)
+player_id (FK -> Players)
+round_number
+roll_number
+dice_values (JSONB)
+selected_dice (JSONB)
+score
+created_at
+Historique des parties (GameHistory)
+id (PK)
+game_id (FK -> Games)
+player_id (FK -> Players)
+action_type (roll, select, pass, win)
+details (JSONB)
+created_atv

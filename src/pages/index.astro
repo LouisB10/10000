@@ -1,0 +1,41 @@
+---
+import MainLayout from '../layouts/MainLayout.astro';
+---
+
+<MainLayout title="10,000 Dice Game - Accueil">
+	<section class="game-intro">
+		<h2>Bienvenue dans le jeu de 10,000 !</h2>
+		<p>Un jeu de dés passionnant où l'objectif est d'atteindre 10,000 points.</p>
+		<div class="game-actions">
+			<button class="btn btn--primary">Nouvelle partie</button>
+			<button class="btn btn--secondary">Rejoindre une partie</button>
+		</div>
+	</section>
+</MainLayout>
+
+<style lang="scss">
+	@import '../styles/main.scss';
+
+	.game-intro {
+		@include flex-center;
+		flex-direction: column;
+		text-align: center;
+		padding: 2rem;
+		@include card-style;
+
+		h2 {
+			margin-bottom: 1rem;
+		}
+
+		p {
+			margin-bottom: 2rem;
+			max-width: 600px;
+		}
+	}
+
+	.game-actions {
+		display: flex;
+		gap: 1rem;
+		margin-top: 1rem;
+	}
+</style>

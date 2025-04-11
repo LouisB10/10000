@@ -1,0 +1,55 @@
+---
+interface Props {
+  title: string;
+}
+
+const { title } = Astro.props;
+---
+
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="generator" content={Astro.generator} />
+    <title>{title}</title>
+  </head>
+  <body>
+    <header class="header">
+      <div class="container">
+        <h1>10,000 Dice Game</h1>
+      </div>
+    </header>
+    <main class="container">
+      <slot />
+    </main>
+    <footer class="footer">
+      <div class="container">
+        <p>© 2024 10,000 Dice Game</p>
+      </div>
+    </footer>
+  </body>
+</html>
+
+<style lang="scss">
+  @import '../styles/main.scss';
+
+  .header {
+    background-color: $primary-color;
+    color: white;
+    padding: 1rem 0;
+    margin-bottom: 2rem;
+
+    h1 {
+      margin: 0;
+    }
+  }
+
+  .footer {
+    margin-top: 2rem;
+    padding: 1rem 0;
+    text-align: center;
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+  }
+</style> 

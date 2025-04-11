@@ -1,47 +1,49 @@
-# Astro Starter Kit: Minimal
+# 10,000 Dice Game
 
-```sh
-npm create astro@latest -- --template minimal
+Un jeu de dés en ligne multijoueur basé sur le jeu classique "10,000" (ou Farkle), développé avec Astro, TypeScript, Three.js et TailwindCSS.
+
+## 🎲 Fonctionnalités
+
+- Jeu multijoueur en temps réel
+- Animations 3D des dés avec Three.js
+- Système de progression et de niveaux
+- Interface utilisateur moderne et responsive
+- Calcul automatique des scores
+- Chat intégré
+
+## 🚀 Technologies
+
+- Frontend: Astro, TypeScript, Three.js, TailwindCSS
+- Backend: Node.js, Express, Socket.io
+- Base de données: PostgreSQL
+- Déploiement: Vercel/Netlify
+
+## 📋 Règles du jeu
+
+Le but est d'être le premier joueur à atteindre 10 000 points. Chaque joueur lance 6 dés et peut marquer des points selon les combinaisons suivantes :
+
+- 1 = 100 points
+- 5 = 50 points
+- 3x1 = 1000 points
+- 3x[2-6] = 100 × valeur du dé
+- Suite complète (1-6) = 1500 points
+- 4+ dés identiques = Double par dé supplémentaire
+
+Pour plus de détails sur les règles, consultez le fichier [rules.txt](info/rules.txt).
+
+## 🛠 Installation
+
+```bash
+# Cloner le dépôt
+git clone https://github.com/votre-username/10000-dice-game.git
+
+# Installer les dépendances
+npm install
+
+# Lancer le serveur de développement
+npm run dev
 ```
 
-[![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/withastro/astro/tree/latest/examples/minimal)
-[![Open with CodeSandbox](https://assets.codesandbox.io/github/button-edit-lime.svg)](https://codesandbox.io/p/sandbox/github/withastro/astro/tree/latest/examples/minimal)
-[![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/withastro/astro?devcontainer_path=.devcontainer/minimal/devcontainer.json)
+## 📝 Licence
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
-
-## 🚀 Project Structure
-
-Inside of your Astro project, you'll see the following folders and files:
-
-```text
-/
-├── public/
-├── src/
-│   └── pages/
-│       └── index.astro
-└── package.json
-```
-
-Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
-
-There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components.
-
-Any static assets, like images, can be placed in the `public/` directory.
-
-## 🧞 Commands
-
-All commands are run from the root of the project, from a terminal:
-
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
-
-## 👀 Want to learn more?
-
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+MIT
